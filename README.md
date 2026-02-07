@@ -1,4 +1,4 @@
-# licgen - Offline ChooseALicense CLI
+# licgen - Offline CLI Licence Template generation
 
 `licgen` is a command-line tool that brings the functionality of [choosealicense.com](https://choosealicense.com/) to your terminal, completely offline. It helps you quickly generate license files for your projects without having to search for them online.
 
