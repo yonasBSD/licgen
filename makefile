@@ -2,7 +2,7 @@
 # Makefile
 
 CC = gcc
-CFLAGS = -Wall -Wextra -O2 -I$(SRC_DIR)/headers
+CFLAGS = -static -Wall -Wextra -O2 -I$(SRC_DIR)/headers
 LDFLAGS =
 
 # Directories
