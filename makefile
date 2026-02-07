@@ -54,16 +54,16 @@ clean:
 	@echo "Cleaned build directory and local binary"
 
 install: $(TARGET)
-	@mkdir -p $(DESTDIR)$(BINDIR)
-	@mkdir -p $(DESTDIR)$(DATADIR)/templates
-	install -m 755 $(TARGET) $(DESTDIR)$(BINDIR)/licgen
-	cp templates/*.template $(DESTDIR)$(DATADIR)/templates/
-	@echo "Installed licgen to $(DESTDIR)$(BINDIR)/licgen"
-	@echo "Installed templates to $(DESTDIR)$(DATADIR)/templates"
+	@mkdir -p $(BINDIR)
+	@mkdir -p $(DATADIR)/templates
+	install -m 755 $(TARGET) $(BINDIR)/licgen
+	cp templates/*.template $(DATADIR)/templates/
+	@echo "Installed licgen to $(BINDIR)/licgen"
+	@echo "Installed templates to $(DATADIR)/templates"
 
 uninstall:
-	rm -f $(DESTDIR)$(BINDIR)/licgen
-	rm -rf $(DESTDIR)$(DATADIR)
+	rm -f $(BINDIR)/licgen
+	rm -rf $(DATADIR)
 	@echo "Uninstalled licgen"
 
 debug: CFLAGS += -g -DDEBUG

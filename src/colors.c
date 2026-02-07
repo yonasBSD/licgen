@@ -11,22 +11,6 @@ void colors_init(void) {
     }
 }
 
-void colors_disable(void) {
-    g_colors_enabled = false;
-}
-
-bool colors_enabled(void) {
-    return g_colors_enabled;
-}
-
-const char* col(const char* color_code) {
+const char* color(const char* color_code) {
     return g_colors_enabled ? color_code : "";
-}
-
-void print_colored(const char* color, const char* text) {
-    if (g_colors_enabled) {
-        printf("%s%s%s", color, text, COL_RESET);
-    } else {
-        printf("%s", text);
-    }
 }

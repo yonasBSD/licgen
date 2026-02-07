@@ -7,7 +7,7 @@
 #include <stdbool.h>
 #include <time.h>
 
-#define LICGEN_VERSION "1.0.0"
+#define LICGEN_VERSION "1.1.0"
 #define LICGEN_NAME "licgen"
 
 #define MAX_LICENSE_TEXT 65536

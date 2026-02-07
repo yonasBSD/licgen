@@ -18,8 +18,8 @@ void print_conditions(char** items, int count);
 void print_limitations(char** items, int count);
 
 /* Print a single help item with symbol */
-void print_permission_item(const char* item);
-void print_condition_item(const char* item);
-void print_limitation_item(const char* item);
+// void print_permission_item(const char* item);
+// void print_condition_item(const char* item);
+// void print_limitation_item(const char* item);
 
 #endif /* HELP_H */

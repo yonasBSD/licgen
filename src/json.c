@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void fprint_json_string(FILE* out, const char* str) {
+static void fprint_json_string(FILE* out, const char* str) {
     if (!str) {
         fprintf(out, "null");
         return;
@@ -58,38 +58,38 @@ void print_json_list(const License* licenses, int count, FILE* out) {
     fprintf(out, "]\n");
 }
 
-void print_json_help(const License* lic, 
-                     char** permissions, int perm_count,
-                     char** conditions, int cond_count,
-                     char** limitations, int lim_count,
-                     FILE* out) {
-    fprintf(out, "{\n");
-    fprintf(out, "  \"id\": "); fprint_json_string(out, lic->id); fprintf(out, ",\n");
-    fprintf(out, "  \"name\": "); fprint_json_string(out, lic->name); fprintf(out, ",\n");
-    fprintf(out, "  \"spdx_id\": "); fprint_json_string(out, lic->spdx_id); fprintf(out, ",\n");
-    fprintf(out, "  \"description\": "); fprint_json_string(out, lic->description); fprintf(out, ",\n");
-    fprintf(out, "  \"category\": \"%s\",\n", category_to_string(lic->category));
-    
-    fprintf(out, "  \"permissions\": [");
-    for (int i = 0; i < perm_count; i++) {
-        fprint_json_string(out, permissions[i]);
-        if (i < perm_count - 1) fprintf(out, ", ");
-    }
-    fprintf(out, "],\n");
-    
-    fprintf(out, "  \"conditions\": [");
-    for (int i = 0; i < cond_count; i++) {
-        fprint_json_string(out, conditions[i]);
-        if (i < cond_count - 1) fprintf(out, ", ");
-    }
-    fprintf(out, "],\n");
-    
-    fprintf(out, "  \"limitations\": [");
-    for (int i = 0; i < lim_count; i++) {
-        fprint_json_string(out, limitations[i]);
-        if (i < lim_count - 1) fprintf(out, ", ");
-    }
-    fprintf(out, "]\n");
-    
-    fprintf(out, "}\n");
-}
+// void print_json_help(const License* lic, 
+//                      char** permissions, int perm_count,
+//                      char** conditions, int cond_count,
+//                      char** limitations, int lim_count,
+//                      FILE* out) {
+//     fprintf(out, "{\n");
+//     fprintf(out, "  \"id\": "); fprint_json_string(out, lic->id); fprintf(out, ",\n");
+//     fprintf(out, "  \"name\": "); fprint_json_string(out, lic->name); fprintf(out, ",\n");
+//     fprintf(out, "  \"spdx_id\": "); fprint_json_string(out, lic->spdx_id); fprintf(out, ",\n");
+//     fprintf(out, "  \"description\": "); fprint_json_string(out, lic->description); fprintf(out, ",\n");
+//     fprintf(out, "  \"category\": \"%s\",\n", category_to_string(lic->category));
+//     
+//     fprintf(out, "  \"permissions\": [");
+//     for (int i = 0; i < perm_count; i++) {
+//         fprint_json_string(out, permissions[i]);
+//         if (i < perm_count - 1) fprintf(out, ", ");
+//     }
+//     fprintf(out, "],\n");
+//     
+//     fprintf(out, "  \"conditions\": [");
+//     for (int i = 0; i < cond_count; i++) {
+//         fprint_json_string(out, conditions[i]);
+//         if (i < cond_count - 1) fprintf(out, ", ");
+//     }
+//     fprintf(out, "],\n");
+//     
+//     fprintf(out, "  \"limitations\": [");
+//     for (int i = 0; i < lim_count; i++) {
+//         fprint_json_string(out, limitations[i]);
+//         if (i < lim_count - 1) fprintf(out, ", ");
+//     }
+//     fprintf(out, "]\n");
+//     
+//     fprintf(out, "}\n");
+// }

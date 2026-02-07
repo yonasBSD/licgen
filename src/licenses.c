@@ -72,9 +72,12 @@ static void parse_template_file(const char* path) {
     lic.needs_year = true;
     
     char line[2048];
-    int section = 0; // 0: metadata, 1: permissions, 2: conditions, 3: limitations, 4: text
+
+    int section = 0;
     
     char* full_text = malloc(MAX_LICENSE_TEXT);
+    
+
     full_text[0] = '\0';
 
     while (fgets(line, sizeof(line), f)) {
@@ -185,7 +188,7 @@ void print_license_list(bool permissive, bool copyleft, bool public_domain) {
         bool found = false;
         for (int j = 0; j < license_count; j++) {
             if (registry[j].category == cats[i]) {
-                if (!found && group) printf("\n%s%s%s\n", col(COL_BBLUE), titles[i], col(COL_RESET));
+                if (!found && group) printf("\n%s%s%s\n", color(BBLUE), titles[i], color(RESET));
                 printf("  %-12s %s\n", registry[j].id, registry[j].name);
                 found = true;
             }

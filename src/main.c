@@ -8,10 +8,8 @@
 #include "headers/colors.h"
 #include "headers/prompt.h"
 #include "headers/help.h"
-#include "headers/licenses.h"
 #include "headers/json.h"
 
-/* Command line options */
 static struct {
     const char* license_id;
     const char* name;
@@ -64,7 +62,7 @@ static void parse_args(int argc, char* argv[]) {
         }
     }
     
-    /* Get positional argument (license id or "list") */
+
     if (optind < argc) {
         if (strcmp(argv[optind], "list") == 0) {
             opts.list_cmd = true;
@@ -122,7 +120,6 @@ static int handle_license_generate(const License* lic) {
     char* name = NULL;
     char* year = NULL;
     
-    /* Get required fields interactively or from args */
     if (lic->needs_name) {
         if (opts.name) {
             name = safe_strdup(opts.name);
@@ -143,7 +140,6 @@ static int handle_license_generate(const License* lic) {
         }
     }
     
-    /* Generate license text */
     char* text = replace_placeholders(lic->template_text, name, year);
     if (!text) {
         fprintf(stderr, "Error: Failed to generate license text.\n");
@@ -152,7 +148,6 @@ static int handle_license_generate(const License* lic) {
         return 1;
     }
     
-    /* Output */
     FILE* out = stdout;
     const char* final_output = opts.output_file;
     
@@ -180,18 +175,18 @@ static int handle_license_generate(const License* lic) {
     } else {
         
         if (!opts.brief && out == stdout) {
-            printf("\n%s%s%s\n", col(COL_DIM), "─────────────────────────────────────", col(COL_RESET));
+            printf("\n%s%s%s\n", color(DIM), "─────────────────────────────────────", color(RESET));
         }
         
         fprintf(out, "%s\n", text);
         
         if (!opts.brief && out == stdout) {
-            printf("%s%s%s\n", col(COL_DIM), "─────────────────────────────────────", col(COL_RESET));
+            printf("%s%s%s\n", color(DIM), "─────────────────────────────────────", color(RESET));
         }
         
         if (final_output) {
             fclose(out);
-            printf("License written to %s%s%s\n", col(COL_BGREEN), final_output, col(COL_RESET));
+            printf("License written to %s%s%s\n", color(BGREEN), final_output, color(RESET));
         }
     }
     
@@ -204,7 +199,6 @@ static int handle_license_generate(const License* lic) {
 int main(int argc, char* argv[]) {
     colors_init();
     
-    /* Try local templates first, then system path */
     DIR* dir = opendir("templates");
     if (dir) {
         closedir(dir);
@@ -215,35 +209,30 @@ int main(int argc, char* argv[]) {
     
     parse_args(argc, argv);
     
-    /* Handle version */
     if (opts.show_version) {
         print_version();
         free_licenses();
         return 0;
     }
     
-    /* Handle list command */
     if (opts.list_cmd) {
         int ret = handle_list();
         free_licenses();
         return ret;
     }
     
-    /* Handle general help */
     if (opts.show_help && !opts.license_id) {
         print_usage();
         free_licenses();
         return 0;
     }
     
-    /* Need a license ID from here */
     if (!opts.license_id) {
         print_usage();
         free_licenses();
         return 1;
     }
     
-    /* Look up the license */
     const License* lic = get_license_by_id(opts.license_id);
     if (!lic) {
         fprintf(stderr, "Unknown license: %s\n", opts.license_id);
@@ -252,14 +241,12 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     
-    /* Handle license-specific help */
     if (opts.show_help) {
         int ret = handle_license_help(lic);
         free_licenses();
         return ret;
     }
     
-    /* Generate license */
     int ret = handle_license_generate(lic);
     free_licenses();
     return ret;

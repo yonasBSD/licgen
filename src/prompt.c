@@ -12,10 +12,10 @@ char* prompt_string(const char* prompt, const char* default_value) {
     
     if (default_value && *default_value) {
         printf("%s%s%s [%s%s%s]: ", 
-               col(COL_BCYAN), prompt, col(COL_RESET),
-               col(COL_DIM), default_value, col(COL_RESET));
+               color(BCYAN), prompt, color(RESET),
+               color(DIM), default_value, color(RESET));
     } else {
-        printf("%s%s%s: ", col(COL_BCYAN), prompt, col(COL_RESET));
+        printf("%s%s%s: ", color(BCYAN), prompt, color(RESET));
     }
     
     fflush(stdout);
@@ -48,7 +48,7 @@ char* prompt_string(const char* prompt, const char* default_value) {
     return result;
 }
 
-char* get_current_year(void) {
+static char* get_current_year(void) {
     time_t now = time(NULL);
     struct tm* tm_info = localtime(&now);
     char* year = malloc(16);
