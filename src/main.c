@@ -156,7 +156,7 @@ static int handle_license_generate(const License* lic) {
     } else if (!final_output) {
         if (opts.json_output) final_output = "LICENSE.json";
         else if (opts.markdown_output) final_output = "LICENSE.md";
-        else final_output = "LICENSE.txt";
+        else final_output = "LICENSE";
     }
 
     if (final_output) {

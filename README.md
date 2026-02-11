@@ -6,7 +6,7 @@
 
 - **Offline License Help**: View permissions, conditions, and limitations for popular licenses in a clean table format.
 - **Dynamic Template System**: Adding new licenses is as easy as creating a `.template` text file.
-- **Smart Defaults**: Automatically writes to `LICENSE.txt`, `LICENSE.md`, or `LICENSE.json` based on the format.
+- **Smart Defaults**: Automatically writes to `LICENSE`, `LICENSE.md`, or `LICENSE.json` based on the format.
 - **Interactive Mode**: Prompts for required fields like Name and Year if not provided.
 - **Full CLI Support**: Supports arguments for non-interactive use and piping.
 
@@ -39,13 +39,13 @@ licgen mit --help
 By default, `licgen` writes to a file in the current directory:
 
 ```bash
-licgen mit                     # Interactive mode, writes to LICENSE.txt
-licgen mit --name "John Doe"   # Non-interactive, writes to LICENSE.txt
+licgen mit                     # Interactive mode, writes to LICENSE
+licgen mit --name "John Doe"   # Non-interactive, writes to LICENSE
 ```
 
 ### Output Formats
 
-- **Text (Default)**: Writes to `LICENSE.txt`
+- **Text (Default)**: Writes to `LICENSE`
 - **Markdown**: Use `-m` or `--markdown`. Writes to `LICENSE.md`.
 - **JSON**: Use `-j` or `--json`. Writes to `LICENSE.json`.
 
